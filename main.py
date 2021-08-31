@@ -3,7 +3,7 @@ import base64
 from multipage import *
 from abstractive_summarization import abstractive_summarization
 from style_transfer import style_transfer
-from image_captioning import image_captioning
+#from image_captioning import image_captioning
 from display_data import display_data
 from about_me import about_me
 from sentiment_analysis import sentiment_analysis
@@ -15,7 +15,7 @@ def create_main(sidebar=False):
 
     # Add all your applications (pages) here
     app.add_page("Select an option", about_me.app)
-    app.add_page("Image captioning", image_captioning.app)
+    # app.add_page("Image captioning", image_captioning.app)
     app.add_page("Abstractive summarization", abstractive_summarization.app)
     app.add_page("Style transfer", style_transfer.app)
     app.add_page("Sentiment analysis", sentiment_analysis.app)
