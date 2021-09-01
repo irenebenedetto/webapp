@@ -1,6 +1,7 @@
 import streamlit as st
 import io
 import numpy as np
+from torchvision import transforms
 from style_transfer.utils import *
 def app():
 
@@ -28,16 +29,16 @@ def app():
 
     if uploaded_file_style is not None and uploaded_file_content is not None:
         bytes_data = uploaded_file_style.getvalue()
-        Image.open(io.BytesIO(bytes_data)).convert('RGB').resize((256, 256)).save('./style_transfer/img/style.jpg')
+        style_img = Image.open(io.BytesIO(bytes_data)).convert('RGB').resize((256, 256))
 
         bytes_data = uploaded_file_content.getvalue()
-        Image.open(io.BytesIO(bytes_data)).convert('RGB').resize((256, 256)).save('./style_transfer/img/content.jpg')
+        content_img = Image.open(io.BytesIO(bytes_data)).convert('RGB').resize((256, 256))
         col1, col2 = st.columns(2)
-        col1.image('./style_transfer/img/style.jpg', caption='Style image uploaded')
-        col2.image('./style_transfer/img/content.jpg', caption='Content image uploaded')
+        col1.image(style_img, caption='Style image uploaded')
+        col2.image(content_img, caption='Content image uploaded')
 
-        style_img = image_loader("./style_transfer/img/style.jpg", imsize=imsize)
-        content_img = image_loader("./style_transfer/img/content.jpg", imsize=imsize)
+        content_img = transforms.ToTensor()(content_img).unsqueeze(0)
+        style_img = transforms.ToTensor()(style_img).unsqueeze(0)
         input_img = content_img.clone()
 
 
@@ -86,7 +87,7 @@ def app():
 
             output = 255. * input_img.squeeze(0).permute(1, 2, 0).cpu().detach().numpy()
             output = Image.fromarray((output).astype(np.uint8), mode='RGB')
-            output.save('./style_transfer/img/output.jpg')
+            
             bar.empty()
             st.subheader('Output image')
-            st.image('./style_transfer/img/output.jpg', )
+            st.image(output)
