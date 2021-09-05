@@ -7,9 +7,13 @@ from style_transfer import style_transfer
 from display_data import display_data
 from about_me import about_me
 from sentiment_analysis import sentiment_analysis
+import gc
+
+
 
 
 def create_main(sidebar=False):
+    gc.collect()
     # Create an instance of the app
     app = MultiPage()
 
@@ -25,7 +29,7 @@ def create_main(sidebar=False):
     app.run(sidebar)
 
 def run_app():
-
+    gc.collect()
     st.markdown(
         '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">',
         unsafe_allow_html=True)
@@ -86,6 +90,7 @@ def run_app():
     col1.markdown('<p style="font-size:20px;text-align:center"><b>Check out some experiments here</b></p>', unsafe_allow_html=True)
     col2.markdown('<i class="fa fa-chevron-down" style="font-size:36px;text-align: center;"></i>', unsafe_allow_html=True)
     create_main(sidebar=False)
+    gc.collect()
 
 
 

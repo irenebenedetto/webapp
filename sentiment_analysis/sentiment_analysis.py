@@ -1,8 +1,9 @@
 from transformers import pipeline
 import streamlit as st
-
+import gc
 
 def app():
+    gc.collect()
     st.title('Sentiment analysis')
     st.write("Analyse a small sentence and understand whether is positive, negative, or neutral.")
 
@@ -13,6 +14,7 @@ def app():
 
     button = st.button('Analyze the sentence')
     if button:
+        gc.collect()
         sentiment_analysis = pipeline("sentiment-analysis", model="./sentiment_analysis/checkpoints/model/")
         sentiment = sentiment_analysis(text)[0]
         
@@ -30,5 +32,6 @@ def app():
             col1, col2 = st.columns((14, 1))
             col2.image('./sentiment_analysis/img/neu.png')
             col1.subheader(f'Sentiment {sentiment["label"]} ({round(sentiment["score"] * 100, 2)}%)\n')
-
+            
+        gc.collect()
 

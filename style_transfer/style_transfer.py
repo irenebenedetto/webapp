@@ -3,8 +3,11 @@ import io
 import numpy as np
 from torchvision import transforms
 from style_transfer.utils import *
-def app():
+import gc
 
+
+def app():
+    gc.collect()
 
 
     st.title('Style transfer')
@@ -26,8 +29,9 @@ def app():
     num_steps = exp.slider('Select the number of iterations:', 100, 500, 250, 10)
     imsize = exp.selectbox('Select the size (pixel) of the output image:', options=[128, 256, 512])
 
-
+    gc.collect()
     if uploaded_file_style is not None and uploaded_file_content is not None:
+        
         bytes_data = uploaded_file_style.getvalue()
         style_img = Image.open(io.BytesIO(bytes_data)).convert('RGB').resize((256, 256))
 
@@ -40,7 +44,7 @@ def app():
         content_img = transforms.ToTensor()(content_img).unsqueeze(0)
         style_img = transforms.ToTensor()(style_img).unsqueeze(0)
         input_img = content_img.clone()
-
+        gc.collect()
 
         model, style_losses, content_losses = initialize_model_losses(cnn, norm_mean, norm_std, style_img, content_img)
         optimizer = optimizer = optim.LBFGS([input_img.requires_grad_()])
@@ -51,8 +55,10 @@ def app():
         latest_iteration = st.empty()
         run = [0]
         pb = 0
+        
         if button:
             bar = st.progress(0)
+            gc.collect()
 
             while run[0] <= num_steps:
                 bar.progress(run[0]/num_steps)
@@ -76,6 +82,7 @@ def app():
 
                     loss = style_score + content_score
                     loss.backward()
+                    gc.collect()
 
                     run[0] += 1
 
@@ -91,3 +98,4 @@ def app():
             bar.empty()
             st.subheader('Output image')
             st.image(output)
+            gc.collect()
