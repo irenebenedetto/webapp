@@ -1,6 +1,5 @@
 [server]
-# port = 8501  # default
-port = 8508
+headless = true
 
 [logger]
 
