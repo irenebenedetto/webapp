@@ -4,7 +4,7 @@ import numpy as np
 from torchvision import transforms
 from style_transfer.utils import *
 import gc
-
+import pickle
 
 def app():
     gc.collect()
@@ -20,7 +20,12 @@ def app():
     exp = st.expander('Parameters for style transfer')
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    cnn = models.vgg19(pretrained=True).features.to(device).eval()
+
+    # improve RAM
+    with open('./style_transfer/checkpoints/model.pkl', 'rb') as f:
+        cnn = pickle.load(f)
+
+    #cnn = models.vgg19(pretrained=True).features.to(device).eval()
 
     norm_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
     norm_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
