@@ -11,11 +11,6 @@ import torchvision.models as models
 import copy
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-cnn = models.vgg19(pretrained=True).features.to(device).eval()
-norm_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
-norm_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
-
 unloader = transforms.ToPILImage()  # reconvert into PIL image
 
 
