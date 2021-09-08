@@ -18,7 +18,7 @@ This website shows four different demos:
 
 ## Installation and usage
 
-My personal website is available on-line at: https://share.streamlit.io/irenebenedetto/webapp/main/main.py. Unfortunately, the Stremalit Free plan limits the available resources to 1 GB and this may compromise the heaviest tasks, such as summarizaion and sentiment analysis. So, to run the code locally the following steps are required:
+My personal website is available on-line at: https://share.streamlit.io/irenebenedetto/webapp/main/main.py. Unfortunately, the Stremalit Free plan limits the available resources to 1 GB and this may compromise the heavier tasks, such as summarizaion and sentiment analysis. So, to run the code locally the following steps are required:
 - Clone the repository;
 ```bash
 git clone https://github.com/irenebenedetto/webapp.git
