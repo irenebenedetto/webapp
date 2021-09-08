@@ -2,6 +2,8 @@
 
 Source code for my [personal website](https://share.streamlit.io/irenebenedetto/webapp/main/main.py). 
 
+![Personal website interface](./img/website.png?raw=true "Personal website")
+
 This website shows four different demos:
 - **Style transfer**: the goal of this task is to generate an image that has the style of a selected image (style-image) and the content of another one (content-image).
 - **Abstractive summarization**: the aim of this task is to generate the abstractive summary of a long input text.
