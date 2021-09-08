@@ -9,6 +9,11 @@ This website shows four different demos:
 - **Display your data**: insert a dataset (in CSV format) and select the feature to display with bar plot, line plot or map.
 
 
+| ![Van Gogh - Starry Night - Google Art Project](./img/starry_night.jpg?raw=true "Van Gogh - Starry Night - [Google Art Project](https://it.wikipedia.org/wiki/Notte_stellata#/media/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg)") | ![A goat - Pixabay](./img/goat.jpg?raw=true "A goat - [Pixabay](https://pixabay.com/it/photos/caprone-capra-cashmere-wollziege-4368131/)") | ![Style transfer output image](./img/output.jpg?raw=true "Style transfer output image")|
+|:--:| :--: |:--:| 
+| *Van Gogh, Starry Night - [Google Art Project](https://it.wikipedia.org/wiki/Notte_stellata#/media/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg)* | *A goat - [Pixabay](https://pixabay.com/it/photos/caprone-capra-cashmere-wollziege-4368131/)* | *Style transfer output image* | 
+
+
 ## Installation and usage
 
 My personal website is available on-line at: https://share.streamlit.io/irenebenedetto/webapp/main/main.py. Unfortunately, the Stremalit Free plan limits the available resources to 1 GB and this may compromise the heaviest tasks, such as summarizaion and sentiment analysis. So, to run the code locally the following steps are required:
